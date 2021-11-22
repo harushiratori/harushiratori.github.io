@@ -64,7 +64,7 @@ const Peer = window.Peer;
 
   // Register connected peer handler
   peer.on('connection', dataConnection => {
-    dataConnection.once('__SKYWAY_KEY__', async () => {
+    dataConnection.once(window.__SKYWAY_KEY__, async () => {
       messages.textContent += `=== DataConnection has been opened ===\n`;
 
       sendTrigger.addEventListener('click', onClickSend);
