@@ -64,17 +64,17 @@ const Peer = window.Peer;
 
   // Register connected peer handler
   peer.on('connection', dataConnection => {
-    dataConnection.once(window.__SKYWAY_KEY__, async () => {
+    dataConnection.once('open', async () => {
       messages.textContent += `=== DataConnection has been opened ===\n`;
 
       sendTrigger.addEventListener('click', onClickSend);
     });
 
-    dataConnection.on('open', data => {
+    dataConnection.on('data', data => {
       messages.textContent += `Remote: ${data}\n`;
     });
 
-    dataConnection.once('data', () => {
+    dataConnection.once('close', () => {
       messages.textContent += `=== DataConnection has been closed ===\n`;
       sendTrigger.removeEventListener('click', onClickSend);
     });
